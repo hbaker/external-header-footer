@@ -1,6 +1,6 @@
 === External Header Footer ===
-Contributors: yllus
-Donate link: https://github.com/yllus/external-header-footer
+Contributors: yllus, hbaker
+Donate link: https://github.com/yllus/external-header-footer-plus
 Tags: 
 Requires at least: 3.5.2
 Tested up to: 4.2.4
@@ -8,26 +8,26 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-External Header Footer lets you expose your site's header and footer as URLs whose content can then be displayed on other websites. 
+External Header Footer Plus lets you expose your site's header and footer as URLs whose content can then be displayed on other websites, with additional action hooks.
 
 == Description ==
 
-**External Header Footer** is a simple WordPress plug-in that exposes that site's header and footer over HTTP as URLs whose content can then be consumed. 
+**External Header Footer Plus** is a simple WordPress plug-in that exposes that site's header and footer over HTTP as URLs whose content can then be consumed, and allows you to include additional content below your header. 
 
 How is this useful? Let's say you've got a WordPress website at your **www** subdomain, and a forum for your community of users at a **forums** subdomain. 
 In many cases, you'll want to keep the header, footer and basic styling (link, text, background colours) of both sites identical. 
 
-That's the cue to use **External Header Footer**: Once this plug-in is enabled on **www**, run a scheduled task on your **forums** subdomain to retrieve 
+That's the cue to use **External Header Footer Plus**: Once this plug-in is enabled on **www**, run a scheduled task on your **forums** subdomain to retrieve 
 and locally store (write to a file, or to memory) the header and footer to be displayed on that site every day/hour/week. Now with minimal effort you can 
 be assured that both sites will maintain a consistent look and feel.
 
 == Installation ==
 
-1. Enable **External Header Footer** within the **Plugins** > **Installed Plugins** interface.
+1. Enable **External Header Footer Plus** within the **Plugins** > **Installed Plugins** interface.
 
 2. Head over next to the settings page for the plug-in at **Settings** > **External Header Footer**.
 
-3. Check the **Expose Header and Footer** checkbox and click the **Save Changes** button.
+3. Check the **Expose Header and Footer Plus** checkbox and click the **Save Changes** button.
 
 4. The settings page should return with a message indicating your changes have been saved. The page will also list three URLs that are now ready for 
    viewing and use. The **Demo Page URL** provides a demonstration of what some sample content will look like when the header and footer are read in and 
@@ -41,9 +41,9 @@ be assured that both sites will maintain a consistent look and feel.
 
 = Consuming an External Header and Footer to display on your WordPress Site =
 
-1. If not already done, enable **External Header Footer** within the **Plugins** > **Installed Plugins** interface.
+1. If not already done, enable **External Header Footer Plus** within the **Plugins** > **Installed Plugins** interface.
 
-2. Head over next to the settings page for the plug-in at **Settings** > **External Header Footer**.
+2. Head over next to the settings page for the plug-in at **Settings** > **External Header Footer Plus**.
 
 3. Enter a valid URL into the **External Header URL** and **External Footer URL** fields (or leave one or the other blank if you only need one of the two).
 
@@ -72,10 +72,11 @@ Sometimes the contents of your header or footer will cause conflicts or problems
 **Google Analytics for WordPress** plug-in on your WordPress site, but your external website has its own Google Analytics code, and you don't want to get 
 the two mixed together. No problem - but it will take a little bit of code. 
 
-Two new WordPress Actions are included as part of this plug-in; both allow you to run your own code immediately before the external header and footer 
+Three new WordPress Actions are included as part of this plug-in; both allow you to run your own code immediately before the external header and footer 
 are displayed at their new individual URLs:
 
       external_header_footer_pre_header
+      external_header_footer_post_header
       external_header_footer_pre_footer
 
 Let's say you need to stop **Google Analytics for WordPress** from  In your theme's functions.php file, write a function that removes the addition of 
@@ -119,7 +120,7 @@ out as part of the footer is output.
 == Screenshots ==
 
 1. The settings page for External Header Footer allows you to enable/disable whether or not your WordPress website's header and footer will be available 
-   for external consumption (**Expose Header and Footer**). If that option is checked, the **Header URL** and **Footer URL** fields display the URLs that 
+   for external consumption (**Expose Header and Footer Plus**). If that option is checked, the **Header URL** and **Footer URL** fields display the URLs that 
    should be retrieved by external websites when using your site's header and footer.
 
    Within the **Consume Header / Footer from External Website** section, you can optionally consume another site's header and footer, and then use the 
@@ -128,6 +129,9 @@ out as part of the footer is output.
 2. This displays what's found at the **Demo Page URL**; namely, some placeholder text wrapped by your site's header and footer.
 
 == Changelog ==
+
+= 1.0.2 =
+* Adds an additional action hook directly below the header, allowing you to include additional content after your header, but before the external site's main content.
 
 = 1.0.1 =
 * Adds a "Force Use Of Absolute URLs" option that automatically rewrites URLs that are relative to the site's root to be absolute URLs instead.

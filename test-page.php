@@ -1,6 +1,6 @@
 <?php
 /* This file consists of a demonstration script for how to retrieve the header and footer of a WordPress site 
- * that has the External Header Footer plug-in enabled. It's meant to be completely standalone of WordPress 
+ * that has the External Header Footer Plus plug-in enabled. It's meant to be completely standalone of WordPress 
  * itself, and uses pure PHP functions only.
  *
  * If you want to take the header/footer of one WordPress site and use it on a second WordPress site, look 
@@ -8,8 +8,8 @@
  */
 
 // Take a guess at what the URLs to the WordPress site's exposed header and footer are...
-$str_header_url = $_SERVER['SERVER_NAME'] . '/external-header-footer/header/';
-$str_footer_url = $_SERVER['SERVER_NAME'] . '/external-header-footer/footer/';
+$str_header_url = $_SERVER['SERVER_NAME'] . '/external-header-footer-plus/header/';
+$str_footer_url = $_SERVER['SERVER_NAME'] . '/external-header-footer-plus/footer/';
 
 // Define a function that uses the cURL library to retrieve the contents of a URL and returns it in a string.
 function curl_download( $url ) {
@@ -40,7 +40,6 @@ The URL to the site header is: <a target="_blank" href="<?php echo $str_header_u
 <br />
 The URL to the site footer is: <a target="_blank" href="<?php echo $str_footer_url; ?>"><?php echo $str_footer_url; ?></a>
 <br /><br />
-Thanks for using the <b>External Header Footer</b> plug-in! Please write to <a href="mailto:sully@yllus.com">sully@yllus.com</a> if you encounter issues or have suggestions.
 </p>
 
 <?php 

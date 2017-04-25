@@ -1,18 +1,18 @@
 <?php
 /*
- Plugin Name: External Header Footer
- Plugin URI: https://github.com/yllus/external-header-footer
- Description: Exposes the header and footer of the website as individual files, allowing for external consumption (for third parties sites that want a similar design style).
- Author: Sully Syed
- Version: 1.0.1
- Author URI: http://yllus.com/
+ Plugin Name: External Header Footer Plus
+ Plugin URI: https://github.com/hbaker/external-header-footer-plus
+ Description: Same functionality as Sully's original External Header Footer plugin, with the addition of an action hook below the header, to enable you to add content below the header.
+ Author: Hosea Baker
+ Version: 1.0.2
+ Author URI: https://hoseabaker.com/
 */
 
 // Add a new rewrite rule that points to our exposed header and footer.
 function ehf_add_rewrite_rules_parameters() {
 	add_rewrite_tag('%ehf_template%','([^&]+)');
 
-	add_rewrite_rule( '^external-header-footer/([header|footer|demo]+)/?$', 'index.php?ehf_template=$matches[1]', 'top');
+	add_rewrite_rule( '^external-header-footer-plus/([header|footer|demo]+)/?$', 'index.php?ehf_template=$matches[1]', 'top');
 }
 add_action('init', 'ehf_add_rewrite_rules_parameters', 1);
 
@@ -49,6 +49,10 @@ function ehf_parse_request( &$wp ) {
 
 				// Output the header.
 				echo $str_output;
+
+				// Execute any actions that have been coded into the theme/other plug-ins to run after the footer is output.
+				do_action('external_header_footer_post_header');
+				
 				exit;
         		break;
         	case 'footer':
@@ -269,9 +273,9 @@ function ehf_expose_header_and_footer_checkbox() {
 	}
 
 	// Retrieve the URLs for the header, footer and test page.
-	$ehf_header_url = home_url('/external-header-footer/header/');
-	$ehf_footer_url = home_url('/external-header-footer/footer/');
-	$ehf_test_url = plugins_url('external-header-footer/test-page.php');
+	$ehf_header_url = home_url('/external-header-footer-plus/header/');
+	$ehf_footer_url = home_url('/external-header-footer-plus/footer/');
+	$ehf_test_url = plugins_url('external-header-footer-plus/test-page.php');
 	?>
 	<tr valign="top">
 		<th colspan="2">
@@ -441,7 +445,7 @@ function ehf_external_cache_expiry_text() {
 	$ehf_external_cache_expiry = get_option('ehf_external_cache_expiry', '60');
 
 	// Retrieve the URLs for the external test page.
-	$ehf_external_test_url = home_url('/external-header-footer/demo/');
+	$ehf_external_test_url = home_url('/external-header-footer-plus/demo/');
 	?>
 	<tr valign="top">
 		<th scope="row"><label for="ehf_external_cache_expiry">Cache Header/Footer For</label></th>
